@@ -1,8 +1,15 @@
 import classes from "./Forma.module.css";
 import { useEffect, useState } from "react";
+import NavBar from './NavBar'
 
-const Forma = () => {
-  const [data, setData] = useState( [
+const Forma = (props) => {
+
+    console.log(props)
+    console.log('id mrena formes', props.id);
+    if(props.id !== undefined){
+        console.log('u thirr hee')
+    }
+  const [data, setData] = useState(localStorage.workers ? JSON.parse(localStorage.workers) : [
     {
       id: 2,
       emri: "Bledian",
@@ -24,7 +31,7 @@ const Forma = () => {
     
   console.log("data", data);
 
-  localStorage.setItem('workers', data);
+  localStorage.setItem('workers', JSON.stringify(data));
 
   }, [data]);
 
@@ -54,6 +61,7 @@ const Forma = () => {
 
   return (
     <>
+        <NavBar/>
       <form>
         <label>ID:</label>
         <input
