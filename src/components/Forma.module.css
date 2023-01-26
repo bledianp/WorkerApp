@@ -1,40 +1,39 @@
-form{
-    display: flex;
-    flex-direction: column;
-    /* align-items: left; */
-    text-align: left;
-    width: 20%;
-    margin: auto;
-    margin-top: 20px;
-    /* border: 1px solid gray; */
-    padding: 20px;
-    background-color: lightgray;
-    border-radius: 5px;
+form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: left; */
+  text-align: left;
+  width: 20%;
+  margin: auto;
+  margin-top: 20px;
+  /* border: 1px solid gray; */
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 5px;
 }
 
-form label{
-    margin-top: 5px;
+form label {
+  margin-top: 5px;
 }
 
-form input{
-    width: 100%;
-    /* margin: auto; */
-    /* width: 80%; */
+form input {
+  width: 100%;
+  /* margin: auto; */
+  width: 80%;
 }
 
-.butoni{
-
-    float: right;
-    margin-top: 5px;
-    background-color: rgb(241, 57, 57);
-    width: 100px;
-    cursor: pointer;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
+.butoni {
+  float: right;
+  margin-top: 5px;
+  background-color: rgb(241, 57, 57);
+  width: 100px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
 }
 
-.butoni:hover{
-    background-color: red;
-    color: white;
+.butoni:hover {
+  background-color: red;
+  color: white;
 }

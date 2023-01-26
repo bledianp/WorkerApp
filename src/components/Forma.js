@@ -1,57 +1,88 @@
 import classes from "./Forma.module.css";
 import { useEffect, useState } from "react";
-import NavBar from './NavBar'
+import NavBar from "./NavBar";
+import { useParams } from "react-router-dom";
 
-const Forma = (props) => {
+const Forma = () => {
+  const { id } = useParams();
+  console.log(+id);
+  console.log(typeof id);
 
-    console.log(props)
-    console.log('id mrena formes', props.id);
-    if(props.id !== undefined){
-        console.log('u thirr hee')
-    }
-  const [data, setData] = useState(localStorage.workers ? JSON.parse(localStorage.workers) : [
-    {
-      id: 2,
-      emri: "Bledian",
-      mbiemri: "Potera",
-      dataLindjes: "24/10/1998",
-      email: "bledianpotera1@gmail.com",
-      pozita: "developer",
-    },
-  ]);
+  const [data, setData] = useState(
+    localStorage.workers
+      ? JSON.parse(localStorage.workers)
+      : [
+          {
+            id: "2",
+            emri: "Bledian",
+            mbiemri: "Potera",
+            dataLindjes: "24/10/1998",
+            email: "bledianpotera1@gmail.com",
+            pozita: "developer",
+          },
+        ]
+  );
 
-  const [id, setId] = useState("");
   const [emri, setEmri] = useState("");
   const [mbiemri, setMbiemri] = useState("");
   const [dataLindjes, setDataLindjes] = useState("");
   const [email, setEmail] = useState("");
   const [pozita, setPozita] = useState("");
 
-  useEffect(()=>{
-    
-  console.log("data", data);
+  const updatedContact = {
+    id,
+    emri,
+    mbiemri,
+    dataLindjes,
+    email,
+    pozita,
+  };
 
-  localStorage.setItem('workers', JSON.stringify(data));
+  useEffect(() => {
+    // console.log("data", data);
 
+    localStorage.setItem("workers", JSON.stringify(data));
   }, [data]);
 
+  useEffect(() => {
+    if (id) {
+      const found = data.find((element) => element.id == id);
+
+      // console.log('found', found);
+      // console.log(typeof(found.emri))
+      setEmri(found.emri);
+      setMbiemri(found.mbiemri);
+
+      setDataLindjes(found.dataLindjes);
+
+      setEmail(found.email);
+      setPozita(found.pozita);
+    }
+  }, []);
+
+  const updateContact = (id, updatedContact) => {
+    setData(data.map((dat) => (dat.id === id ? updatedContact : dat)));
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
+    if (id) {
+      console.log("mrena if");
+      updateContact(id, updatedContact);
+    } else {
+      const newData = {
+        id: Math.random().toLocaleString(),
+        emri: emri,
+        mbiemri: mbiemri,
+        dataLindjes: dataLindjes,
+        email: email,
+        pozita: pozita,
+      };
 
-    const newData = {
-      id: id,
-      emri: emri,
-      mbiemri: mbiemri,
-      dataLindjes: dataLindjes,
-      email: email,
-      pozita: pozita,
-    };
+      setData([...data, newData]);
+      console.log(data);
+    }
 
-    setData([...data, newData]);
-    console.log(data);
-
-    setId("");
     setEmri("");
     setMbiemri("");
     setEmail("");
@@ -61,15 +92,8 @@ const Forma = (props) => {
 
   return (
     <>
-        <NavBar/>
+      <NavBar />
       <form>
-        <label>ID:</label>
-        <input
-          type="text"
-          onChange={(e) => setId(e.target.value)}
-          value={id}
-          required
-        />
         <label>Emri:</label>
         <input
           type="text"
@@ -106,10 +130,13 @@ const Forma = (props) => {
           required
         />
         <div>
-        <button type="submit" className={classes.butoni} onClick={handleClick}>
-       
-          Regjistro
-        </button>
+          <button
+            type="submit"
+            className={classes.butoni}
+            onClick={handleClick}
+          >
+            Regjistro
+          </button>
         </div>
       </form>
     </>

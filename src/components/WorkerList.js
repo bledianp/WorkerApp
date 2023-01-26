@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Worker from "./Worker";
-import classes from './Worker.module.css';
+import classes from "./Worker.module.css";
 
 const WorkerList = () => {
   const [data, setData] = useState(
@@ -18,24 +18,19 @@ const WorkerList = () => {
         ]
   );
 
+  useEffect(() => {
+    localStorage.setItem("workers", JSON.stringify(data));
+  }, [data]);
 
-  useEffect(()=>{
-    
-  
-    localStorage.setItem('workers', JSON.stringify(data));
-  
-    }, [data]);
-  
-  
   const handleDelete = (id) => {
-    console.log('delete');
+    console.log("delete");
+    alert("Are you Sure?")
     setData(data.filter((dat) => dat.id !== id));
   };
 
   const handleEdit = (id, updatedContact) => {
-
-    console.log('u thirr');
-    console.log('id mrena edit', id)
+    console.log("u thirr");
+    console.log("id mrena edit", id);
     setData(
       data.map((contact) => (contact.id === id ? updatedContact : contact))
     );
@@ -43,42 +38,36 @@ const WorkerList = () => {
 
   console.log(data);
 
-
-
   return (
     <>
       <h1>Worker List</h1>
 
       <table class={classes.customers}>
-  <tr>
-    <th>Emri</th>
-    <th>Mbiemri</th>
-    <th>Data e Lindjes</th>
-    <th>Email</th>
-    <th>Pozita</th>
-    <th>Edit</th>
-    <th>Delete</th>
-
-  </tr>
-  {data.map((dat) => {
-        return (
-          <Worker
-          id={dat.id}
-          key={dat.id}
-            emri={dat.emri}
-            mbiemri={dat.mbiemri}
-            dataLindjes={dat.dataLindjes}
-            email={dat.email}
-            pozita={dat.pozita} 
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-          />
-        );
-      })}
-
- 
-</table>
-      
+        <tr>
+          <th>Emri</th>
+          <th>Mbiemri</th>
+          <th>Data e Lindjes</th>
+          <th>Email</th>
+          <th>Pozita</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        {data.map((dat) => {
+          return (
+            <Worker
+              id={dat.id}
+              key={dat.id}
+              emri={dat.emri}
+              mbiemri={dat.mbiemri}
+              dataLindjes={dat.dataLindjes}
+              email={dat.email}
+              pozita={dat.pozita}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          );
+        })}
+      </table>
     </>
   );
 };
