@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useParams } from "react-router-dom";
 
-
 const Forma = () => {
   const { id } = useParams();
   // console.log(+id);
@@ -103,10 +102,9 @@ const Forma = () => {
       ) {
         setValidimi(true);
         return;
-      }else{
+      } else {
         setValidimi(false);
       }
-     
 
       setData([...data, newData]);
       console.log(data);
@@ -122,14 +120,12 @@ const Forma = () => {
   return (
     <>
       <NavBar />
-      {validimi && <h3 style={{color:'red'}}>You must fill all inputs!!!</h3>}
       <form>
         <label>Emri:</label>
         <input
           type="text"
           onChange={(e) => setEmri(e.target.value)}
           value={emri}
-
           required
         />
         <label>Mbiemri:</label>
@@ -137,7 +133,6 @@ const Forma = () => {
           type="text"
           onChange={(e) => setMbiemri(e.target.value)}
           value={mbiemri}
-
           required
         />
         <label>Data Lindjes:</label>
@@ -163,6 +158,11 @@ const Forma = () => {
           value={pozita}
           required
         />
+
+        {validimi && (
+          <h3 style={{ color: "red" }}>You must fill all inputs!!!</h3>
+        )}
+
         <div>
           <button
             type="submit"

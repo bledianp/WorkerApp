@@ -27,19 +27,18 @@ const WorkerList = () => {
   };
 
   const handleEdit = (id, updatedContact) => {
-   
     setData(
       data.map((contact) => (contact.id === id ? updatedContact : contact))
     );
   };
 
-//   console.log(data);
+  //   console.log(data);
 
   return (
     <>
-        {/* <Modal/> */}
+      {/* <Modal/> */}
 
-      <h1>Worker List</h1>
+      <h1 style={{ color: "lightgreen" }}>Worker List</h1>
 
       <table class={classes.customers}>
         <tr>

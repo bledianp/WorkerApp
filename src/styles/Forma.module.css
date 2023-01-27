@@ -17,17 +17,13 @@ form label {
 }
 
 form input {
-  width: 100%;
   margin: 5px 0;
-  /* margin: auto; */
-  width: 80%;
   padding: 5px;
   border-radius: 3px;
 }
 
 .butoni {
-  /* float: right; */
-  margin-top: 5px;
+  margin-top: 10px;
   background-color: rgb(79, 146, 169);
   width: 100px;
   cursor: pointer;
@@ -41,6 +37,6 @@ form input {
   color: white;
 }
 
-.validimi{
+.validimi {
   background-color: rgb(245, 131, 131);
 }

@@ -1,7 +1,6 @@
 .customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  /* width: 50% !important; */
   margin: auto;
 }
 
@@ -43,10 +42,10 @@
   border-radius: 3px;
 }
 
-.editBtn:hover{
+.editBtn:hover {
   background-color: green;
 }
 
-.deleteBtn:hover{
-  background-color:red;
+.deleteBtn:hover {
+  background-color: red;
 }
