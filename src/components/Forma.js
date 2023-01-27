@@ -1,12 +1,13 @@
-import classes from "./Forma.module.css";
+import classes from "../styles/Forma.module.css";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useParams } from "react-router-dom";
 
+
 const Forma = () => {
   const { id } = useParams();
-  console.log(+id);
-  console.log(typeof id);
+  // console.log(+id);
+  // console.log(typeof id);
 
   const [data, setData] = useState(
     localStorage.workers
@@ -28,6 +29,8 @@ const Forma = () => {
   const [dataLindjes, setDataLindjes] = useState("");
   const [email, setEmail] = useState("");
   const [pozita, setPozita] = useState("");
+
+  const [validimi, setValidimi] = useState(false);
 
   const updatedContact = {
     id,
@@ -60,6 +63,18 @@ const Forma = () => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log(email);
+  //   console.log(email.includes("@"));
+  //   if (!email.includes("@")) {
+  //     console.log('u thirr 2')
+  //     setValidimi(true);
+  //     console.log(validimi)
+  //   }else{
+  //     setValidimi(false)
+  //   }
+  // }, [email]);
+
   const updateContact = (id, updatedContact) => {
     setData(data.map((dat) => (dat.id === id ? updatedContact : dat)));
   };
@@ -67,7 +82,7 @@ const Forma = () => {
   const handleClick = (e) => {
     e.preventDefault();
     if (id) {
-      console.log("mrena if");
+      // console.log("mrena if");
       updateContact(id, updatedContact);
     } else {
       const newData = {
@@ -78,6 +93,20 @@ const Forma = () => {
         email: email,
         pozita: pozita,
       };
+
+      if (
+        emri.trim().length === 0 ||
+        mbiemri.trim().length === 0 ||
+        dataLindjes.trim().length === 0 ||
+        !email.includes("@") ||
+        pozita.trim().length === 0
+      ) {
+        setValidimi(true);
+        return;
+      }else{
+        setValidimi(false);
+      }
+     
 
       setData([...data, newData]);
       console.log(data);
@@ -93,12 +122,14 @@ const Forma = () => {
   return (
     <>
       <NavBar />
+      {validimi && <h3 style={{color:'red'}}>You must fill all inputs!!!</h3>}
       <form>
         <label>Emri:</label>
         <input
           type="text"
           onChange={(e) => setEmri(e.target.value)}
           value={emri}
+
           required
         />
         <label>Mbiemri:</label>
@@ -106,6 +137,7 @@ const Forma = () => {
           type="text"
           onChange={(e) => setMbiemri(e.target.value)}
           value={mbiemri}
+
           required
         />
         <label>Data Lindjes:</label>
@@ -119,6 +151,8 @@ const Forma = () => {
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
+          // style={{background: validimi ? 'rgb(245, 131, 131)' : 'white'}}
+
           value={email}
           required
         />

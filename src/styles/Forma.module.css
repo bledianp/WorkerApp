@@ -18,14 +18,17 @@ form label {
 
 form input {
   width: 100%;
+  margin: 5px 0;
   /* margin: auto; */
   width: 80%;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 .butoni {
-  float: right;
+  /* float: right; */
   margin-top: 5px;
-  background-color: rgb(241, 57, 57);
+  background-color: rgb(79, 146, 169);
   width: 100px;
   cursor: pointer;
   border-radius: 10px;
@@ -34,6 +37,10 @@ form input {
 }
 
 .butoni:hover {
-  background-color: red;
+  background-color: blue;
   color: white;
+}
+
+.validimi{
+  background-color: rgb(245, 131, 131);
 }

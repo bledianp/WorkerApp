@@ -1,4 +1,4 @@
-import classes from "./Worker.module.css";
+import classes from "../styles/Worker.module.css";
 import { Outlet, Link } from "react-router-dom";
 import Forma from "./Forma";
 
@@ -6,6 +6,7 @@ const Worker = (props) => {
   console.log(props.id);
 
   return (
+    <>
     <tbody>
       <tr className={classes.customers}>
         <td>{props.emri}</td>
@@ -28,6 +29,7 @@ const Worker = (props) => {
         </td>
       </tr>
     </tbody>
+    </>
   );
 };
 

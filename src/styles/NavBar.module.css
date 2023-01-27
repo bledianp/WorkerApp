@@ -25,3 +25,7 @@ a:link {
 a:hover {
   text-decoration: none;
 }
+
+a {
+  color: white;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Worker from "./Worker";
-import classes from "./Worker.module.css";
+import classes from "../styles/Worker.module.css";
 
 const WorkerList = () => {
   const [data, setData] = useState(
@@ -23,23 +23,22 @@ const WorkerList = () => {
   }, [data]);
 
   const handleDelete = (id) => {
-    console.log("delete");
-    alert("Are you Sure?")
     setData(data.filter((dat) => dat.id !== id));
   };
 
   const handleEdit = (id, updatedContact) => {
-    console.log("u thirr");
-    console.log("id mrena edit", id);
+   
     setData(
       data.map((contact) => (contact.id === id ? updatedContact : contact))
     );
   };
 
-  console.log(data);
+//   console.log(data);
 
   return (
     <>
+        {/* <Modal/> */}
+
       <h1>Worker List</h1>
 
       <table class={classes.customers}>
