@@ -36,9 +36,8 @@ const WorkerList = () => {
 
   return (
     <>
-      {/* <Modal/> */}
 
-      <h1 style={{ color: "lightgreen" }}>Worker List</h1>
+      <h1 style={{ color: "lightgreen", textAlign:'center' }}>Worker List</h1>
 
       <table className={classes.customers}>
         <thead>

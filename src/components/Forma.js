@@ -1,8 +1,7 @@
 import classes from "../styles/Forma.module.css";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 
 
 const Forma = () => {
