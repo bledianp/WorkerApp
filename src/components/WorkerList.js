@@ -26,11 +26,11 @@ const WorkerList = () => {
     setData(data.filter((dat) => dat.id !== id));
   };
 
-  const handleEdit = (id, updatedContact) => {
-    setData(
-      data.map((contact) => (contact.id === id ? updatedContact : contact))
-    );
-  };
+  // const handleEdit = (id, updatedContact) => {
+  //   setData(
+  //     data.map((contact) => (contact.id === id ? updatedContact : contact))
+  //   );
+  // };
 
   //   console.log(data);
 
@@ -40,7 +40,8 @@ const WorkerList = () => {
 
       <h1 style={{ color: "lightgreen" }}>Worker List</h1>
 
-      <table class={classes.customers}>
+      <table className={classes.customers}>
+        <thead>
         <tr>
           <th>Emri</th>
           <th>Mbiemri</th>
@@ -50,6 +51,7 @@ const WorkerList = () => {
           <th>Edit</th>
           <th>Delete</th>
         </tr>
+        </thead>
         {data.map((dat) => {
           return (
             <Worker
@@ -61,7 +63,7 @@ const WorkerList = () => {
               email={dat.email}
               pozita={dat.pozita}
               onDelete={handleDelete}
-              onEdit={handleEdit}
+              // onEdit={handleEdit}
             />
           );
         })}

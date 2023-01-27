@@ -2,11 +2,15 @@ import classes from "../styles/Forma.module.css";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 const Forma = () => {
   const { id } = useParams();
   // console.log(+id);
   // console.log(typeof id);
+
+
 
   const [data, setData] = useState(
     localStorage.workers
@@ -41,17 +45,16 @@ const Forma = () => {
   };
 
   useEffect(() => {
-    // console.log("data", data);
-
+   
     localStorage.setItem("workers", JSON.stringify(data));
   }, [data]);
 
   useEffect(() => {
+    
     if (id) {
-      const found = data.find((element) => element.id == id);
+      const found = data.find((element) => element.id === id);
 
-      // console.log('found', found);
-      // console.log(typeof(found.emri))
+      
       setEmri(found.emri);
       setMbiemri(found.mbiemri);
 
@@ -73,17 +76,39 @@ const Forma = () => {
   //     setValidimi(false)
   //   }
   // }, [email]);
+ 
 
-  const updateContact = (id, updatedContact) => {
-    setData(data.map((dat) => (dat.id === id ? updatedContact : dat)));
-  };
+  // const updateContact = (id, updatedContact) => {
+  //   setData(data.map((dat) => (dat.id === id ? updatedContact : dat)));
+  // };
 
-  const handleClick = (e) => {
+  const navigate = useNavigate();
+
+   const handleClick = async (e) => {
+
     e.preventDefault();
-    if (id) {
-      // console.log("mrena if");
-      updateContact(id, updatedContact);
+
+    if (
+      emri.trim().length === 0 ||
+      mbiemri.trim().length === 0 ||
+      dataLindjes.trim().length === 0 ||
+      !email.includes("@") ||
+      pozita.trim().length === 0
+    ) {
+      setValidimi(true);
+      return;
     } else {
+      setValidimi(false);
+    }
+
+    if (id) {
+      e.preventDefault();
+      await setData(data.map((dat) => (dat.id === id ? updatedContact : dat)));
+      navigate('/');
+     
+      
+    } else {
+
       const newData = {
         id: Math.random().toLocaleString(),
         emri: emri,
@@ -93,21 +118,10 @@ const Forma = () => {
         pozita: pozita,
       };
 
-      if (
-        emri.trim().length === 0 ||
-        mbiemri.trim().length === 0 ||
-        dataLindjes.trim().length === 0 ||
-        !email.includes("@") ||
-        pozita.trim().length === 0
-      ) {
-        setValidimi(true);
-        return;
-      } else {
-        setValidimi(false);
-      }
+    
 
       setData([...data, newData]);
-      console.log(data);
+      // console.log(data);
     }
 
     setEmri("");
@@ -115,6 +129,8 @@ const Forma = () => {
     setEmail("");
     setDataLindjes("");
     setPozita("");
+    // navigate('/');
+
   };
 
   return (
@@ -140,6 +156,8 @@ const Forma = () => {
           type="date"
           onChange={(e) => setDataLindjes(e.target.value)}
           value={dataLindjes}
+          max={Date.now() - 18}
+          
           required
         />
         <label>Email:</label>
@@ -173,6 +191,8 @@ const Forma = () => {
           </button>
         </div>
       </form>
+
+      
     </>
   );
 };

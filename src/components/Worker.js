@@ -35,9 +35,9 @@ const Worker = (props) => {
 
   return (
     <>
-      {modal && (
+      
         <Modal
-          isOpen={setModal}
+          isOpen={modal}
           //  onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
@@ -78,7 +78,7 @@ const Worker = (props) => {
             </button>
           </div>
         </Modal>
-      )}
+    
       <tbody>
         <tr className={classes.customers}>
           <td>{props.emri}</td>
@@ -94,7 +94,6 @@ const Worker = (props) => {
           <td>
             <button
               className={classes.deleteBtn}
-              // onClick={() => props.onDelete(props.id)}
               onClick={handleDelete}
             >
               Delete
